@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مركز إيجاز — للأبحاث والدراسات التحليلية</title>
+<meta name="description" content="مكتبة مركز إيجاز للأبحاث والدراسات التحليلية">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #0e2a47;
+    --navy-deep: #081d33;
+    --navy-soft: #1a3a5c;
+    --teal: #2a8a9c;
+    --teal-light: #5cc4c7;
+    --teal-mist: #e8f4f5;
+    --bg: #f7f9fb;
+    --bg-paper: #ffffff;
+    --ink: #0e2a47;
+    --ink-soft: #3d4f66;
+    --ink-muted: #7a8a9c;
+    --line: #e2e8ee;
+    --line-soft: #eef2f6;
+    --shadow-sm: 0 1px 2px rgba(14,42,71,0.05);
+    --shadow-md: 0 4px 16px rgba(14,42,71,0.08);
+    --shadow-lg: 0 12px 32px rgba(14,42,71,0.12);
+    --radius: 6px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Alexandria', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(42,138,156,0.05) 0%, transparent 45%),
+      radial-gradient(circle at 85% 100%, rgba(14,42,71,0.04) 0%, transparent 45%);
+  }
+
+  .top-band {
+    height: 4px;
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy) 33%, var(--teal) 33%, var(--teal) 66%, var(--teal-light) 66%, var(--teal-light) 100%);
+  }
+
+  .site-header {
+    border-bottom: 1px solid var(--line);
+    background: rgba(247,249,251,0.9);
+    backdrop-filter: blur(14px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .brand { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
+  .brand-logo { height: 56px; width: auto; display: block; }
+  .brand-divider { width: 1px; height: 36px; background: var(--line); }
+  .brand-text { display: flex; flex-direction: column; }
+  .brand-text span { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.2; }
+  .brand-text strong { font-size: 0.92rem; color: var(--navy); font-weight: 600; margin-top: 2px; }
+
+  .header-nav { display: flex; gap: 2.25rem; font-size: 0.92rem; }
+
+  .header-nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .header-nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background: var(--teal);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+  }
+
+  .header-nav a:hover { color: var(--navy); }
+  .header-nav a:hover::after { transform: scaleX(1); }
+
+  .hero {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.85rem;
+    color: var(--teal);
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  .hero-eyebrow::before { content: ""; width: 32px; height: 1.5px; background: var(--teal); }
+
+  .hero h2 {
+    font-size: clamp(2.25rem, 4.8vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--navy);
+    margin-bottom: 1.75rem;
+    letter-spacing: -0.025em;
+    max-width: 920px;
+  }
+
+  .hero h2 em {
+    font-style: normal;
+    color: var(--teal);
+    position: relative;
+    display: inline-block;
+    font-weight: 800;
+  }
+
+  .hero h2 em::before {
+    content: "";
+    position: absolute;
+    bottom: 0.1em;
+    right: -2px;
+    left: -2px;
+    height: 0.4em;
+    background: var(--teal-light);
+    opacity: 0.25;
+    z-index: -1;
+    border-radius: 2px;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    max-width: 680px;
+    line-height: 1.85;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .stat strong {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat span {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    margin-top: 0.5rem;
+    display: block;
+    font-weight: 500;
+  }
+
+  .stat:first-child strong { color: var(--teal); }
+
+  .library {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 3rem 2rem 6rem;
+  }
+
+  .library-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .library-header h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    position: relative;
+    padding-right: 1rem;
+  }
+
+  .library-header h3::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background: var(--teal);
+    border-radius: 2px;
+  }
+
+  .library-header .count {
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .controls {
+    background: var(--bg-paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.25rem;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .search-wrap { position: relative; }
+
+  .search-wrap svg {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-muted);
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.85rem 3rem 0.85rem 1rem;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    border-radius: var(--radius);
+    font-family: 'Alexandria', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+
+  .search-input::placeholder { color: var(--ink-muted); }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--teal);
+    background: var(--bg-paper);
+    box-shadow: 0 0 0 3px rgba(42,138,156,0.12);
+  }
+
+  .filter-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+  .filter-btn {
+    padding: 0.7rem 1.3rem;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--ink-soft);
+    font-family: 'Alexandria', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: var(--bg-paper);
+  }
+
+  .filter-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .card {
+    background: var(--bg-paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--teal);
+  }
+
+  .card-cover {
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-cover img { width: 100%; height: 100%; object-fit: cover; }
+
+  .card-cover-fallback {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    position: relative;
+    color: white;
+  }
+
+  .card-cover-fallback::after {
+    content: "";
+    position: absolute;
+    inset: 1.25rem;
+    border: 1px solid rgba(92,196,199,0.15);
+    pointer-events: none;
+  }
+
+  .cover-pyramid {
+    width: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    z-index: 1;
+    margin-top: 0.5rem;
+  }
+
+  .cover-pyramid-bar { height: 8px; border-radius: 1px; }
+  .cover-pyramid-bar:nth-child(1) { width: 100%; background: var(--navy-soft); }
+  .cover-pyramid-bar:nth-child(2) { width: 70%; background: var(--teal); }
+  .cover-pyramid-bar:nth-child(3) { width: 40%; background: var(--teal-light); }
+
+  .cover-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1.5;
+    z-index: 1;
+    padding: 0 0.5rem;
+  }
+
+  .cover-stamp {
+    font-size: 0.7rem;
+    color: var(--teal-light);
+    letter-spacing: 0.15em;
+    z-index: 1;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .card-category {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255,255,255,0.95);
+    color: var(--navy);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    backdrop-filter: blur(8px);
+    z-index: 2;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+
+  .card-meta .dot { width: 3px; height: 3px; background: var(--ink-muted); border-radius: 50%; }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.45;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.015em;
+  }
+
+  .card-subtitle {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    margin-bottom: 1rem;
+  }
+
+  .card-summary {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-tag {
+    background: var(--teal-mist);
+    color: var(--teal);
+    font-size: 0.72rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.5rem;
+    border-top: 1px solid var(--line-soft);
+    padding-top: 1.25rem;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 0.7rem;
+    border: 1px solid var(--navy);
+    background: var(--navy);
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Alexandria', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .btn:hover { background: var(--teal); border-color: var(--teal); }
+
+  .empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--ink-muted);
+  }
+
+  .empty svg { margin-bottom: 1rem; opacity: 0.3; }
+
+  .loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--ink-muted);
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--line);
+    border-top-color: var(--teal);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .site-footer {
+    border-top: 1px solid var(--line);
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+
+  .site-footer img {
+    height: 44px;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
+  }
+
+  .site-footer strong {
+    color: white;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .footer-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--teal);
+    margin: 1.25rem auto;
+  }
+
+  @media (max-width: 768px) {
+    .header-inner { padding: 0.85rem 1.25rem; gap: 0.75rem; }
+    .header-nav { display: none; }
+    .brand-logo { height: 42px; }
+    .brand-divider, .brand-text { display: none; }
+    .hero { padding: 3rem 1.25rem 2rem; }
+    .library { padding: 2rem 1.25rem 4rem; }
+    .controls { grid-template-columns: 1fr; padding: 1rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
+  }
+
+  .card { animation: fadeUp 0.5s ease backwards; }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.1s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.2s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+  .card:nth-child(6) { animation-delay: 0.3s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-band"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="brand">
+      <img src="assets/logo.png" alt="مركز إيجاز" class="brand-logo">
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <span>مركز إيجاز</span>
+        <strong>للأبحاث والدراسات التحليلية</strong>
+      </div>
+    </a>
+    <nav class="header-nav">
+      <a href="#library">المكتبة</a>
+      <a href="#contact">تواصل</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">مركز معرفي</div>
+  <h2>أبحاث ودراسات <em>تحليلية</em><br>تنير القراءة وتعمّق الفهم.</h2>
+  <p>مكتبة رقمية تضم إصدارات مركز إيجاز من الأبحاث والدراسات التحليلية في القضايا الراهنة، بصياغة عربية أصيلة ومنهج تحليلي رصين.</p>
+
+  <div class="hero-stats">
+    <div class="stat"><strong id="stat-total">٠</strong><span>إصدارات</span></div>
+    <div class="stat"><strong id="stat-research">٠</strong><span>أبحاث</span></div>
+    <div class="stat"><strong id="stat-studies">٠</strong><span>دراسات</span></div>
+    <div class="stat"><strong id="stat-briefings">٠</strong><span>إيجازات</span></div>
+  </div>
+</section>
+
+<main class="library" id="library">
+
+  <div class="library-header">
+    <h3>المكتبة</h3>
+    <div class="count" id="result-count"></div>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <input type="text" id="search" class="search-input" placeholder="ابحث في عناوين الإصدارات والكلمات المفتاحية…">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </div>
+    <div class="filter-tabs" id="filters">
+      <button class="filter-btn active" data-filter="all">الكل</button>
+      <button class="filter-btn" data-filter="research">أبحاث</button>
+      <button class="filter-btn" data-filter="studies">دراسات</button>
+      <button class="filter-btn" data-filter="briefings">إيجازات</button>
+    </div>
+  </div>
+
+  <div class="grid" id="grid">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>جارٍ تحميل المكتبة…</p>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer" id="contact">
+  <img src="assets/logo.png" alt="مركز إيجاز">
+  <strong>مركز إيجاز</strong>
+  للأبحاث والدراسات التحليلية
+  <div class="footer-divider"></div>
+  جميع الحقوق محفوظة © 2026
+</footer>
+
+<script>
+  // ═══════════════════════════════════════════════════════════════
+  //  ⚠️  هام: ضع رابط Apps Script Web App هنا
+  //  بعد نشر السكربت من Google Sheets، الصق رابط Web App بين علامتي التنصيص
+  // ═══════════════════════════════════════════════════════════════
+  const SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbxWWIxHTCVJuF_YYIVCbaTBztUAOUiUzu8kPPJHMjS9rBtb786CZEmLnQJmKturoOA/exec';
+
+  let publications = [];
+  let currentFilter = 'all';
+  let currentSearch = '';
+
+  const categoryNames = {
+    research: 'أبحاث',
+    studies: 'دراسات',
+    briefings: 'إيجازات'
+  };
+
+  function toArabicNum(num) {
+    return String(num).replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const months = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+    const [year, month] = dateStr.split('-');
+    return `${months[parseInt(month)-1]} ${toArabicNum(year)}`;
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, m => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    })[m]);
+  }
+
+  async function loadData() {
+    try {
+      const res = await fetch(SHEETS_API_URL);
+      const data = await res.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      publications = data.publications || [];
+      updateStats();
+      render();
+    } catch (e) {
+      console.error('خطأ في تحميل البيانات:', e);
+      document.getElementById('grid').innerHTML = `
+        <div class="empty">
+          <p>تعذّر تحميل المكتبة. تأكد من إعدادات الربط مع Google Sheets.</p>
+          <p style="font-size:0.8rem;margin-top:0.5rem;color:#a8b3c2;">${e.message}</p>
+        </div>`;
+    }
+  }
+
+  function updateStats() {
+    document.getElementById('stat-total').textContent = toArabicNum(publications.length);
+    document.getElementById('stat-research').textContent = toArabicNum(publications.filter(p => p.category === 'research').length);
+    document.getElementById('stat-studies').textContent = toArabicNum(publications.filter(p => p.category === 'studies').length);
+    document.getElementById('stat-briefings').textContent = toArabicNum(publications.filter(p => p.category === 'briefings').length);
+  }
+
+  function render() {
+    const grid = document.getElementById('grid');
+    let filtered = publications;
+
+    if (currentFilter !== 'all') {
+      filtered = filtered.filter(p => p.category === currentFilter);
+    }
+
+    if (currentSearch) {
+      const q = currentSearch.toLowerCase();
+      filtered = filtered.filter(p =>
+        (p.title || '').toLowerCase().includes(q) ||
+        (p.subtitle || '').toLowerCase().includes(q) ||
+        (p.summary || '').toLowerCase().includes(q) ||
+        (p.tags || []).some(t => t.toLowerCase().includes(q))
+      );
+    }
+
+    document.getElementById('result-count').textContent =
+      `${toArabicNum(filtered.length)} من أصل ${toArabicNum(publications.length)}`;
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `
+        <div class="empty">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <p>${publications.length === 0 ? 'لا توجد إصدارات منشورة بعد.' : 'لا توجد نتائج مطابقة لبحثك'}</p>
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(p => {
+      const fallbackHTML = `
+        <div class="card-cover-fallback" ${p.cover ? 'style="display:none;"' : ''}>
+          <div class="cover-stamp">إيجاز</div>
+          <div class="cover-pyramid">
+            <div class="cover-pyramid-bar"></div>
+            <div class="cover-pyramid-bar"></div>
+            <div class="cover-pyramid-bar"></div>
+          </div>
+          <div class="cover-title">${escapeHtml(p.title)}</div>
+        </div>`;
+
+      const coverHTML = p.cover
+        ? `<img src="${p.cover}" alt="${escapeHtml(p.title)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">${fallbackHTML}`
+        : fallbackHTML;
+
+      const tagsHTML = (p.tags || []).map(t => `<span class="card-tag">${escapeHtml(t)}</span>`).join('');
+
+      return `
+        <article class="card" data-category="${p.category}">
+          <div class="card-cover">
+            <span class="card-category">${categoryNames[p.category] || p.category}</span>
+            ${coverHTML}
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span>${formatDate(p.date)}</span>
+              <span class="dot"></span>
+              <span>${toArabicNum(p.pages)} صفحة</span>
+            </div>
+            <h4 class="card-title">${escapeHtml(p.title)}</h4>
+            ${p.subtitle ? `<p class="card-subtitle">${escapeHtml(p.subtitle)}</p>` : ''}
+            <p class="card-summary">${escapeHtml(p.summary)}</p>
+            <div class="card-tags">${tagsHTML}</div>
+            <div class="card-actions">
+              <a href="${p.file}" download class="btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                تحميل الإصدار
+              </a>
+            </div>
+          </div>
+        </article>`;
+    }).join('');
+  }
+
+  document.getElementById('search').addEventListener('input', e => {
+    currentSearch = e.target.value;
+    render();
+  });
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      render();
+    });
+  });
+
+  loadData();
+</script>
+
+</body>
+</html>
